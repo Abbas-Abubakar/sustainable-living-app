@@ -103,31 +103,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF0F9F2),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Expanded section to center the form
+            Expanded(
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24.0),
+                  child: _buildFormCard(),
+                ),
+              ),
+            ),
 
-              // Form Card
-              _buildFormCard(),
-
-              const SizedBox(height: 24),
-
-              // Bottom Section
-              _buildBottomSection(),
-            ],
-          ),
+            // Bottom section pinned to bottom
+            _buildBottomSection(),
+          ],
         ),
       ),
     );
   }
 
-
   Widget _buildFormCard() {
     return Container(
       width: double.infinity,
+      constraints: const BoxConstraints(maxWidth: 400), // Optional: limit max width
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -273,7 +273,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-
   Widget _buildRegisterButton() {
     return SizedBox(
       width: double.infinity,
@@ -310,58 +309,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-
   Widget _buildBottomSection() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Already have an account? ',
-              style: TextStyle(
-                color: const Color(0xFF2E3A3A),
-
-                fontSize: 16,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                // Navigate to login page
-                // Navigator.pushReplacementNamed(context, '/login');
-              },
-              child: const Text(
-                'Login here',
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'Already have an account? ',
                 style: TextStyle(
-                  color: Color(0xFF008080),
+                  color: Color(0xFF2E3A3A),
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  decoration: TextDecoration.underline,
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Text(
-          'By creating an account, you agree to our Privacy Policy\nand Terms of Service',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: const Color(0xFF2E3A3A).withValues(
-              red: 46,
-              green: 58,
-              blue: 58,
-              alpha: 128,
-            ),
-
-            fontSize: 12,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to login page
+                  Navigator.pushReplacementNamed(context, AppRoutes.login);
+                },
+                child: const Text(
+                  'Login here',
+                  style: TextStyle(
+                    color: Color(0xFF008080),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+          Text(
+            'By creating an account, you agree to our Privacy Policy\nand Terms of Service',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: const Color(0xFF2E3A3A).withOpacity(0.6),
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
     );
   }
-
 }
-
-
-

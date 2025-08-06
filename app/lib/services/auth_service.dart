@@ -61,6 +61,7 @@ class AuthService {
       await result.user?.reload();
       return result.user;
     } on FirebaseAuthException catch (e) {
+      print('FirebaseAuthException code: ${e.code}');
       switch (e.code) {
         case 'email-already-in-use':
           throw AuthException('This email is already in use.');
