@@ -20,7 +20,7 @@ class EcoProduct {
       id: documentId,
       name: data['name'] ?? '',
       description: data['description'] ?? '',
-      price: data['price'] ?? 0.0,
+      price: (data['price'] ?? 0.0).toDouble(),
       category: data['category'] ?? '',
       imageUrl: data['imageUrl'] ?? '',
     );

@@ -5,6 +5,7 @@ import 'package:app/screens/carbon-foot-print_page/carbon_foot_print_page.dart';
 import 'package:app/screens/contact/contact.dart';
 import 'package:app/screens/home/home_screen.dart';
 import 'package:app/screens/image-Gallery/image_gallery_screen.dart';
+import 'package:app/screens/pages/eco_products_page.dart';
 import 'package:app/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,7 @@ class AppRoutes {
   static const String imageGallery = '/image-gallery';
   static const String contact = '/contact-us';
   static const String carbonFootPrint = '/carbon-foot-print';
+  static const String ecoProducts = '/eco-products';
 
   static Map<String, WidgetBuilder> routes = {
     home: (context) => const HomeScreen(),
@@ -27,7 +29,8 @@ class AppRoutes {
     aboutUs: (context) => const About(),
     imageGallery: (context) => ImageGalleryScreen(),
     contact: (context) => Contact(),
-    carbonFootPrint: (context) => CarbonFootprintPage()
+    carbonFootPrint: (context) => CarbonFootprintPage(),
+    ecoProducts: (context) => EcoProductsPage(),
 
   };
 }
